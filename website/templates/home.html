@@ -1,6 +1,31 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
-
-{% block content%}
-<h1>This is the home page</h1>
+{% block content %}
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Notes</h1>
+    <ul class="list-group list-group-flush" id="notes">
+      {% for note in user.notes %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ note.data }}
+          <button type="button" class="btn btn-sm btn-outline-danger" onClick="deleteNote({{ note.id }})">
+            Delete
+          </button>
+        </li>
+      {% endfor %}
+    </ul>
+    <form class="mt-4" method="POST">
+      <div class="form-group">
+        <label for="note">Add a New Note</label>
+        <textarea name="note" id="note" class="form-control" rows="4" placeholder="Write your note here..."></textarea>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Add Note</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    function deleteNote(noteId) {
+      // Implement your delete note logic here
+    }
+  </script>
 {% endblock %}
